@@ -29,6 +29,35 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(8081, () => {
+app.post("/create-student", (req, res) => {
+  const query = "INSERT INTO student (name, email) VALUES (?, ?)";
+  const values = [req.body.name, req.body.email];
+  db.query(query, [values], (err, data) => {
+    if (err) return res.json("Error", err);
+    return res.json(data);
+  });
+});
+
+app.put("/update-student/:id", (req, res) => {
+  const query = "UPDATE student SET name = ?, email = ? WHERE id = ?";
+  const values = [req.body.name, req.body.email];
+  const id = req.params.id;
+  db.query(query, [...values, id], (err, data) => {
+    if (err) return res.json("Error", err);
+    return res.json(data);
+  });
+});
+
+app.delete("/delete-student", (req, res) => {
+  const query = "DELETE FROM student WHERE id = ?";
+  const id = req.params.id;
+  db.query(query, [id], (err, data) => {
+    if (err) return res.json("Error", err);
+    return res.json(data);
+  });
+});
+
+const PORT = process.env.PORT || 8081;
+app.listen(PORT, () => {
   console.log("listening to port 8081");
 });
