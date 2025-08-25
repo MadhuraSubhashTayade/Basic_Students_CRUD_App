@@ -7,17 +7,19 @@ export const StudentTable = () => {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(()=>{
-    axios.get("http://localhost:8081/").then((res) => {
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/")
+      .then((res) => {
         console.log(res.data);
         setStudents(res.data);
       })
       .catch((err) => setError(err));
-  },[])
+  }, []);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8081/delete/${id}`);
+      await axios.delete(`http://localhost:8081/delete-student/${id}`);
       window.location.reload();
     } catch (error) {
       console.log("error while deleting record,", error);
@@ -29,8 +31,8 @@ export const StudentTable = () => {
   return (
     <div className="container">
       <div className="inner-container">
-        <Link to="/create-student" className="btn-add">
-          Add +
+        <Link to="/add-student" className="btn-add">
+          Add New Student +
         </Link>
         <table>
           <thead>
@@ -47,7 +49,12 @@ export const StudentTable = () => {
                   <td>{student.name}</td>
                   <td>{student.email}</td>
                   <td className="actions-row">
-                    <Link to={`/update-student/${student.id}`}>Update</Link>
+                    <Link
+                      to={`/edit-student/${student.id}`}
+                      className="btn-edit"
+                    >
+                      Update
+                    </Link>
                     <button onClick={() => handleDelete(student.id)}>
                       Delete
                     </button>

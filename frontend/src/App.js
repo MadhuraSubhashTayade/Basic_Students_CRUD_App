@@ -1,5 +1,3 @@
-import React from "react";
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { StudentTable } from "./components/Home/StudentTable";
 import { CreateStudent } from "./components/CreateStudent/CreateStudent";
@@ -8,10 +6,19 @@ import { UpdateStudent } from "./components/UpdateStudent/UpdateStudent";
 export const App = () => {
   return (
     <BrowserRouter>
+      <h1
+        style={{
+          textAlign: "center",
+          textTransform: "uppercase",
+          fontSize: "24px",
+        }}
+      >
+        Students Table
+      </h1>
       <Routes>
         <Route path="/" element={<StudentTable />} />
         <Route path="/add-student" element={<CreateStudent />} />
-        <Route path="/edit-student" element={<UpdateStudent />} />
+        <Route path="/edit-student/:id" element={<UpdateStudent />} />
       </Routes>
     </BrowserRouter>
   );
