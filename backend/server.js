@@ -1,24 +1,26 @@
 const express = require("express");
 const cors = require("cors");
-const mysql = require("mysql");
+const mysql = require("mysql2");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "crud_app",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306,
 });
 
 db.connect((err, str) => {
-  if (err) console.log("Error while connecting to db: ", err);
-  console.log(
-    "Connected to db successfully with thread id: ",
-    db.threadId + "\n" + str
-  );
+  if (err) {
+    console.log("Error while connecting to db: ", err);
+    return;
+  }
+  console.log("Connected to db successfully with thread id: ", db.threadId);
 });
 
 app.get("/", (req, res) => {
@@ -57,7 +59,7 @@ app.delete("/delete-student/:id", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.APP_PORT || 8081;
 app.listen(PORT, () => {
-  console.log("listening to port 8081");
+  console.log(`listening to port ${PORT}`);
 });
