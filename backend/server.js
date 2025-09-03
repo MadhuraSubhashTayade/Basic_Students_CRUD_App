@@ -23,6 +23,11 @@ db.connect((err, str) => {
   console.log("Connected to db successfully with thread id: ", db.threadId);
 });
 
+// near top with other routes
+app.get("/ping", (req, res) => {
+  return res.json({ status: "ok" });
+});
+
 app.get("/", (req, res) => {
   const query = "SELECT * FROM student";
   db.query(query, (err, data) => {

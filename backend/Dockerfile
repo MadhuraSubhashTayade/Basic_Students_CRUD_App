@@ -1,20 +1,29 @@
-# Use Node.js LTS version
-FROM node:20
+# ---- Base Build Stage ----
+FROM node:20-alpine AS builder
 
-# set working directory
+# Set working directory
 WORKDIR /app
 
-# copy package.json and package-lock.json
+# Copy package.json and package-lock.json first (better caching)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install only production dependencies
+RUN npm install --production
 
-# copy rest of the backend code
+# Copy the rest of the app
 COPY . .
 
-# expose port
+# ---- Runtime Stage ----
+FROM node:20-alpine AS runtime
+
+WORKDIR /app
+
+# Copy node_modules + app code from builder
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app .
+
+# Expose backend port
 EXPOSE 8081
 
-# start the backend server
-CMD ["npm","start"]
+# Start the backend server
+CMD ["npm", "start"]
