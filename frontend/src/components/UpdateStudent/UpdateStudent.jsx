@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import "./UpdateStudent.css";
 import { useNavigate, useParams } from "react-router";
 
+const API_BASE = process.env.REACT_APP_API_URL;
+
 export const UpdateStudent = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,7 +14,7 @@ export const UpdateStudent = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8081/edit-student/${id}`, { name, email })
+      .put(`${API_BASE}/edit-student/${id}`, { name, email })
       .then((res) => {
         console.log("Student updated!", res.data);
         navigate("/");

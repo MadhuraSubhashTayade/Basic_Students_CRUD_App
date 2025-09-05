@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import "./CreateStudent.css";
 import { useNavigate } from "react-router";
 
+const API_BASE = process.env.REACT_APP_API_URL;
+
 export const CreateStudent = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,7 +13,7 @@ export const CreateStudent = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8081/add-student", { name, email })
+      .post(`${API_BASE}/add-student`, { name, email })
       .then((res) => {
         console.log("Student added!", res.data);
         navigate("/");

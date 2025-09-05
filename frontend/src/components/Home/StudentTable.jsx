@@ -3,13 +3,15 @@ import axios from "axios";
 import "./StudentTable.css";
 import { Link } from "react-router";
 
+const API_BASE = process.env.REACT_APP_API_URL;
+
 export const StudentTable = () => {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/")
+      .get(`${API_BASE}/`)
       .then((res) => {
         console.log(res.data);
         setStudents(res.data);
@@ -19,7 +21,7 @@ export const StudentTable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8081/delete-student/${id}`);
+      await axios.delete(`${API_BASE}/delete-student/${id}`);
       window.location.reload();
     } catch (error) {
       console.log("error while deleting record,", error);
