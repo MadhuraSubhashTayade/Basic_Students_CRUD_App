@@ -1,120 +1,95 @@
-🎓 Students CRUD App
+# 📚 Basic Students CRUD App
 
-A full-stack Create, Read, Update, Delete (CRUD) application built with:
-
-Frontend: React + React Router + Axios
-
-Backend: Node.js + Express.js + MySQL
-
-Database: MySQL
-
-The app allows you to manage student records with a simple interface for adding, editing, deleting, and viewing students.
+A full-stack **CRUD (Create, Read, Update, Delete)** web application built using **React**, **Node.js (Express)**, **MySQL**, **Docker**, and **AWS services** (ECR, ECS, RDS). This project demonstrates modern web development practices including containerization, cloud deployment, and environment-based configuration.
 
 ---
 
-🚀 Features
+## ✅ Features
 
-📋 List Students: View all students in a table.
-
-➕ Add Student: Insert new student records.
-
-✏️ Update Student: Edit an existing student by ID.
-
-❌ Delete Student: Remove a student from the database.
-
----
-
-🔗 Routing with React Router:
-
-/ → Show all students
-
-/add-student → Add a new student
-
-/edit-student/:id → Update a student
+- 🔥 **Frontend** built with React, Axios for API calls
+- 🚀 **Backend** with Node.js, Express, and MySQL
+- 📦 **Dockerized** frontend and backend for portability and scalability
+- ☁️ **AWS Deployment** using ECS (Elastic Container Service) and ECR (Elastic Container Registry)
+- 🗄 **Database** hosted on AWS RDS (MySQL)
+- 🔐 Secure database connection with restricted access
+- 🌐 Public URLs for frontend and backend with environment-based configurations
 
 ---
 
-📂 Project Structure
-Basic_Students_CRUD_App/
-├── frontend/ # React frontend
-│ ├── src/
-│ │ ├── App.js
-│ │ ├── components/
-│ │ │ ├── Home/StudentTable.js
-│ │ │ ├── CreateStudent/CreateStudent.js
-│ │ │ ├── UpdateStudent/UpdateStudent.js
-│ │ └── ...
-│ └── package.json
-│
-├── backend/ # Node + Express backend
-│ ├── server.js
-│ └── package.json
-│
-├── .gitignore
-└── README.md
+## ✅ Tech Stack
+
+- **Frontend:** React, Axios, environment variables (.env)
+- **Backend:** Node.js, Express, MySQL2, dotenv
+- **Database:** AWS RDS MySQL instance
+- **Containerization:** Docker (images, tags, push, etc.)
+- **Cloud Services:** AWS ECR, AWS ECS, AWS RDS, Security Groups
+- **Security:** Environment variables, restricted access via inbound rules
 
 ---
 
-⚙️ Setup Instructions
+## ✅ Screenshots
 
-1. Clone the repository
-   git clone https://github.com/MadhuraSubhashTayade/Basic_Students_CRUD_App.git
-   cd Basic_Students_CRUD_App
+1. **Frontend UI**
+   ![alt text](assets/image.png)
 
-2. Setup the Backend
+2. **Backend Console Logs**
+   ![alt text](assets/image-2.png)
 
-Navigate to backend:
+3. **Docker Setup**
+   ![alt text](assets/docker%20crud%20app.png)
 
+4. **AWS Console Screenshots**
+   ![alt text](assets/crud_db.png)
+   ![alt text](assets/crud_cluster.png)
+   ![alt text](assets/image-1.png)
+
+---
+
+## ✅ Getting Started
+
+### Prerequisites
+
+- Docker installed
+- AWS account with access to ECR, ECS, and RDS
+- Node.js installed (for local testing)
+
+---
+
+### Run Locally
+
+```bash
+# Navigate to backend folder
 cd backend
 npm install
-
-Configure MySQL database:
-
-Create a database:
-
-CREATE DATABASE crud_app;
-
-Create student table:
-
-CREATE TABLE student (
-id INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(100),
-email VARCHAR(100)
-);
-
-Start the backend server:
-
-node server.js
-
-Runs at 👉 http://localhost:8081
-
-3. Setup the Frontend
-
-Navigate to frontend:
-
-cd ../frontend
-npm install
-
-Start the React app:
-
 npm start
 
-Runs at 👉 http://localhost:3000
+# Navigate to frontend folder
+cd frontend
+npm install
+npm start
+```
 
----
+## ✅ Docker setup
 
-🔄 API Endpoints
-Method Endpoint Description
-GET / Get all students
-POST /add-student Add new student
-PUT /edit-student/:id Update existing student
-DELETE /delete-student/:id Delete student by ID
+# Build and tag backend image
 
----
+docker build -t basic_crud_app-backend .
 
-📌 Notes
-Frontend assumes backend is running on http://localhost:8081.
+# Push backend image to AWS ECR
 
-Change the API base URL in frontend Axios calls if backend runs elsewhere.
+docker tag basic_crud_app-backend:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-backend:latest
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-backend:latest
 
-Do not commit node_modules/ (already in .gitignore)
+# Repeat for frontend
+
+docker build -t basic_crud_app-frontend .
+docker tag basic_crud_app-frontend:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-frontend:latest
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-frontend:latest
+
+## ✅ AWS Deployment
+
+1. Create ECS cluster
+2. Define task definitions with appropriate CPU, memory, and environment variables
+3. Deploy frontend and backend containers
+4. Configure RDS for MySQL with secure access
+5. Set up security groups for controlled access
