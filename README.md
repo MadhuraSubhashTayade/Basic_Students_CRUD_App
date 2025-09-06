@@ -30,18 +30,22 @@ A full-stack **CRUD (Create, Read, Update, Delete)** web application built using
 ## ✅ Screenshots
 
 1. **Frontend UI**
-   ![alt text](assets/image.png)
+
+![alt text](assets/image.png)
 
 2. **Backend Console Logs**
-   ![alt text](assets/image-2.png)
+
+![alt text](assets/image-2.png)
 
 3. **Docker Setup**
-   ![alt text](assets/docker%20crud%20app.png)
+
+![alt text](assets/docker%20crud%20app.png)
 
 4. **AWS Console Screenshots**
-   ![alt text](assets/crud_db.png)
-   ![alt text](assets/crud_cluster.png)
-   ![alt text](assets/image-1.png)
+
+![alt text](assets/crud_db.png)
+![alt text](assets/crud_cluster.png)
+![alt text](assets/image-1.png)
 
 ---
 
