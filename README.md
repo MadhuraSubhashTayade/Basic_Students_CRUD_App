@@ -27,27 +27,6 @@ A full-stack **CRUD (Create, Read, Update, Delete)** web application built using
 
 ---
 
-## ✅ Screenshots
-
-1. **Frontend UI**
-
-![alt text](assets/image.png)
-
-2. **Backend Console Logs**
-
-![alt text](assets/image-2.png)
-
-3. **Docker Setup**
-
-![alt text](assets/docker%20crud%20app.png)
-
-4. **AWS Console Screenshots**
-
-![alt text](assets/crud_db.png)
-![alt text](assets/crud_cluster.png)
-![alt text](assets/image-1.png)
-
----
 
 ## ✅ Getting Started
 
@@ -74,7 +53,7 @@ npm start
 ```
 
 ## ✅ Docker setup
-
+```bash
 # Build and tag backend image
 
 docker build -t basic_crud_app-backend .
@@ -89,6 +68,7 @@ docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-backend:lat
 docker build -t basic_crud_app-frontend .
 docker tag basic_crud_app-frontend:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-frontend:latest
 docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-frontend:latest
+```
 
 ## ✅ AWS Deployment
 
@@ -97,3 +77,27 @@ docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/crud-app-frontend:la
 3. Deploy frontend and backend containers
 4. Configure RDS for MySQL with secure access
 5. Set up security groups for controlled access
+
+---
+
+## ✅ Screenshots
+
+1. **Frontend UI**
+
+![alt text](assets/image.png)
+
+2. **Backend Console Logs**
+
+![alt text](assets/image-2.png)
+
+3. **Docker Setup**
+
+![alt text](assets/docker%20crud%20app.png)
+
+4. **AWS Console Screenshots**
+
+![alt text](assets/crud_db.png)
+![alt text](assets/crud_cluster.png)
+![alt text](assets/image-1.png)
+
+---
