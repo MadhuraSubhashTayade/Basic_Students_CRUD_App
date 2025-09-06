@@ -1,6 +1,6 @@
 # Step 1 - Build react app
 FROM node:20 AS build
-workdir /app
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .

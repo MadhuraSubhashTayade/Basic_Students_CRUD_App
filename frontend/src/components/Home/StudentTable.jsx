@@ -3,7 +3,7 @@ import axios from "axios";
 import "./StudentTable.css";
 import { Link } from "react-router";
 
-const API_BASE = process.env.REACT_APP_API_URL;
+const API_BASE = "http://3.110.221.134:8081";
 
 export const StudentTable = () => {
   const [students, setStudents] = useState([]);
@@ -11,7 +11,7 @@ export const StudentTable = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE}/`)
+      .get(`${API_BASE}`)
       .then((res) => {
         console.log(res.data);
         setStudents(res.data);

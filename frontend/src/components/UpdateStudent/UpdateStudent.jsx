@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./UpdateStudent.css";
 import { useNavigate, useParams } from "react-router";
 
-const API_BASE = process.env.REACT_APP_API_URL;
+const API_BASE = "http://3.110.221.134:8081";
 
 export const UpdateStudent = () => {
   const [name, setName] = useState("");
